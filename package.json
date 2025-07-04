@@ -1,0 +1,37 @@
+{
+  "name": "page_to_image",
+  "version": "1.0.0",
+  "main": "main.js",
+  "build": {
+    "appId": "com.example.screenshotapp",
+    "productName": "Screenshot App",
+    "files": [
+      "**/*"
+    ],
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  },
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "electron": "^37.2.0",
+    "electron-builder": "^26.0.12"
+  },
+  "dependencies": {
+    "puppeteer": "^24.11.2"
+  }
+}

@@ -1,0 +1,44 @@
+<div class="image-template">
+    <img src="assets/placeholder.jpg" data-editable alt="ciaooo">
+    <div class="overlay-text">
+        <h2>Titolo Immagine</h2>
+        <p>Descrizione modificabile</p>
+    </div>
+</div>
+
+<style>
+    .image-template {
+        width: 100%;
+        height: 100%;
+    }
+
+    .image-template img {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        display: block;
+    }
+
+    .overlay-text {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+        background: rgba(0, 0, 0, 0.3); /* Optional: leggero sfondo trasparente */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        pointer-events: none; /* così non blocca l'immagine se serve cliccarla */
+    }
+
+    .overlay-text h2,
+        .overlay-text p {
+        margin: 0;
+        text-shadow: 0 0 4px #000;
+    }
+</style>

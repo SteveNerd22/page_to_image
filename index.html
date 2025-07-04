@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Editor Screenshot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <button id="toggleSidebar">☰</button>
+        <div id="templateList">
+            <div class="template-item" data-template="template1.html">🖼️ Template 1</div>
+            <div class="template-item" data-template="template2.html">📝 Template 2</div>
+        </div>
+    </div>
+
+    <!-- Workspace -->
+    <div id="workspace-container">
+        <div class="resize-controls">
+            <label>
+                Larghezza
+                <input type="number" id="widthInput" value="1080" />
+            </label>
+            <label>
+                Altezza
+                <input type="number" id="heightInput" value="1920" />
+            </label>
+            <button id="resizeCanvas">Ridimensiona</button>
+        </div>
+        <div id="workspace" contenteditable="false">
+            <div id="canvas">
+            </div>
+        </div>
+        <button id="captureBtn">📸 Cattura immagine</button>
+    </div>
+</div>
+
+<script src="renderer.js"></script>
+</body>
+</html>
