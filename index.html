@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Editor Screenshot</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -19,6 +19,7 @@
 
     <!-- Workspace -->
     <div id="workspace-container">
+        <!-- Controlli resize -->
         <div class="resize-controls">
             <label>
                 Larghezza
@@ -30,10 +31,73 @@
             </label>
             <button id="resizeCanvas">Ridimensiona</button>
         </div>
-        <div id="workspace" contenteditable="false">
-            <div id="canvas">
+
+        <!-- Area canvas + form affiancati -->
+        <div id="editorArea">
+            <!-- Canvas -->
+            <div id="workspace" contenteditable="false">
+                <div id="canvas"></div>
+            </div>
+
+            <!-- Form info -->
+            <div id="infoForm">
+                <label>
+                    Competizione:
+                    <select id="competizioneSelect">
+                        <option value="">-- Seleziona --</option>
+                        <option value="Premier League Darts">Premier League Darts</option>
+                        <option value="World Championship">World Championship</option>
+                        <option value="Grand Slam">Grand Slam</option>
+                    </select>
+                </label>
+
+                <hr />
+
+                <div class="giocatori">
+                    <!-- Giocatore 1 -->
+                    <div class="giocatore">
+                        <h4>Giocatore 1</h4>
+                        <label>Nome: <input type="text" id="nome1" /></label>
+                        <label>Nazionalità:
+                            <select id="nazionalita1">
+                                <option value="">--</option>
+                                <option value="ITA">🇮🇹 ITA</option>
+                                <option value="ENG">🏴 ENG</option>
+                                <option value="NED">🇳🇱 NED</option>
+                                <option value="GER">🇩🇪 GER</option>
+                            </select>
+                        </label>
+                        <label>Punteggio: <input type="text" id="punteggio1" /></label>
+                        <label>Media: <input type="text" id="media1" /></label>
+                        <label>Checkout: <input type="text" id="checkout1" /></label>
+                        <label>180: <input type="text" id="centottanta1" /></label>
+                        <label>Checkout più alto: <input type="text" id="checkoutMax1" /></label>
+                    </div>
+
+                    <!-- Giocatore 2 -->
+                    <div class="giocatore">
+                        <h4>Giocatore 2</h4>
+                        <label>Nome: <input type="text" id="nome2" /></label>
+                        <label>Nazionalità:
+                            <select id="nazionalita2">
+                                <option value="">--</option>
+                                <option value="ITA">🇮🇹 ITA</option>
+                                <option value="ENG">🏴 ENG</option>
+                                <option value="NED">🇳🇱 NED</option>
+                                <option value="GER">🇩🇪 GER</option>
+                            </select>
+                        </label>
+                        <label>Punteggio: <input type="text" id="punteggio2" /></label>
+                        <label>Media: <input type="text" id="media2" /></label>
+                        <label>Checkout: <input type="text" id="checkout2" /></label>
+                        <label>180: <input type="text" id="centottanta2" /></label>
+                        <label>Checkout più alto: <input type="text" id="checkoutMax2" /></label>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <!-- Cattura -->
         <button id="captureBtn">📸 Cattura immagine</button>
     </div>
 </div>
