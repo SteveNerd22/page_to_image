@@ -34,7 +34,7 @@ ipcMain.handle('save-image', async (event, base64Data) => {
 ipcMain.handle('capture-canvas', async (event, htmlContent, width, height) => {
     try {
         const fixedHtml = await inlineLocalImages(htmlContent, path.resolve(__dirname));
-        const imageBuffer = await captureWithPuppeteer(fixedHtml, width, height);
+        const imageBuffer = await captureWithPuppeteer(fixedHtml, width -40, height -40);
 
         // Verifica che sia effettivamente un Buffer
         if (!Buffer.isBuffer(imageBuffer)) {

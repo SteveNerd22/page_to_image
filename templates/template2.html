@@ -1,0 +1,174 @@
+<div class="image-template">
+    <img src="assets/placeholder.png" data-editable alt="ciaooo">
+    <div class="overlay-text">
+        <div class="row1">
+            <div class="left">
+                <div class="flag">
+                    <img src="assets/flags/england.svg" alt="ciaooo">
+                </div>
+                <div class="name">
+                    <h2>BUNTING</h2>
+                </div>
+                <div class="result">
+                    <h1>8</h1>
+                </div>
+            </div>
+            <img src="" class="middle" alt="ciaooo">
+            <div class="right">
+                <div class="result">
+                    <h1>4</h1>
+                </div>
+                <div class="name">
+                    <h2>CROSS</h2>
+                </div>
+                <div class="flag">
+                    <img src="assets/flags/england.svg" alt="ciaooo">
+                </div>
+            </div>
+        </div>
+        <div class="row2">
+            <div class="left">
+                <span>97.49</span>
+            </div>
+            <div class="middle">
+                <span>AVERAGE</span>
+            </div>
+            <div class="right">
+                <span>98.04</span>
+            </div>
+        </div>
+        <div class="row3">
+            <div class="left">
+                <span>42.11%</span>
+            </div>
+            <div class="middle">
+                <span>CHECKOUT %</span>
+            </div>
+            <div class="right">
+                <span>44.44%</span>
+            </div>
+        </div>
+        <div class="row4">
+            <div class="left">
+                <span>4</span>
+            </div>
+            <div class="middle">
+                <span>180S</span>
+            </div>
+            <div class="right">
+                <span>2</span>
+            </div>
+        </div>
+        <div class="row5">
+            <div class="left">
+                <span>104</span>
+            </div>
+            <div class="middle">
+                <span>HIGHEST CHECKOUT</span>
+            </div>
+            <div class="right">
+                <span>116</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .image-template {
+        position: relative;
+        width: 100%; /* o una dimensione fissa tipo 800px */
+        height: 100%; /* o ad esempio 500px, a seconda del tuo canvas */
+        overflow: hidden;
+    }
+
+    .image-template img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* <-- mantiene proporzioni senza stretch */
+        display: block;
+    }
+
+    .overlay-text {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 60%);
+        color: white;
+        font-family: 'Arial Black', sans-serif;
+        padding: 20px 0;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .overlay-text .row1,
+    .overlay-text .row2,
+    .overlay-text .row3,
+    .overlay-text .row4,
+    .overlay-text .row5 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4px 40px;
+        max-width: 800px;
+        margin: 0 auto;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .row1 {
+        font-size: 1.8em;
+    }
+
+    .row1 .left,
+    .row1 .right {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* distanza tra bandiera, nome e score */
+    }
+
+    .row1 .name h2 {
+        margin: 0;
+        font-size: 1em;
+    }
+
+    .row1 .result h1 {
+        font-size: 5em;
+        margin: 0 15px;
+    }
+
+    .row1 .flag img {
+        height: 30px;
+    }
+
+    .row1 .middle {
+        width: 40px;
+        height: 40px;
+        background: white;
+        border-radius: 50%;
+        background-image: url('assets/flags/denmark.svg'); /* metti qui la bandiera centrale */
+        background-size: cover;
+        background-position: center;
+    }
+
+    .row2,
+    .row3,
+    .row4,
+    .row5 {
+        font-size: 1em;
+    }
+
+    .row2 span,
+    .row3 span,
+    .row4 span,
+    .row5 span {
+        flex: 1;
+    }
+
+    .row2 .middle,
+    .row3 .middle,
+    .row4 .middle,
+    .row5 .middle {
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+</style>
