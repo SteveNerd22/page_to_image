@@ -13,7 +13,7 @@
                     <h1>8</h1>
                 </div>
             </div>
-            <img src="" class="middle" alt="ciaooo">
+            <img src="assets/flags/denmark.svg" class="middle" alt="ciaooo">
             <div class="right">
                 <div class="result">
                     <h1>4</h1>
@@ -26,48 +26,50 @@
                 </div>
             </div>
         </div>
-        <div class="row2">
-            <div class="left">
-                <span>97.49</span>
+        <div class="values">
+            <div class="row2">
+                <div class="left">
+                    <span>97.49</span>
+                </div>
+                <div class="middle">
+                    <span>AVERAGE</span>
+                </div>
+                <div class="right">
+                    <span>98.04</span>
+                </div>
             </div>
-            <div class="middle">
-                <span>AVERAGE</span>
+            <div class="row3">
+                <div class="left">
+                    <span>42.11%</span>
+                </div>
+                <div class="middle">
+                    <span>CHECKOUT %</span>
+                </div>
+                <div class="right">
+                    <span>44.44%</span>
+                </div>
             </div>
-            <div class="right">
-                <span>98.04</span>
+            <div class="row4">
+                <div class="left">
+                    <span>4</span>
+                </div>
+                <div class="middle">
+                    <span>180S</span>
+                </div>
+                <div class="right">
+                    <span>2</span>
+                </div>
             </div>
-        </div>
-        <div class="row3">
-            <div class="left">
-                <span>42.11%</span>
-            </div>
-            <div class="middle">
-                <span>CHECKOUT %</span>
-            </div>
-            <div class="right">
-                <span>44.44%</span>
-            </div>
-        </div>
-        <div class="row4">
-            <div class="left">
-                <span>4</span>
-            </div>
-            <div class="middle">
-                <span>180S</span>
-            </div>
-            <div class="right">
-                <span>2</span>
-            </div>
-        </div>
-        <div class="row5">
-            <div class="left">
-                <span>104</span>
-            </div>
-            <div class="middle">
-                <span>HIGHEST CHECKOUT</span>
-            </div>
-            <div class="right">
-                <span>116</span>
+            <div class="row5">
+                <div class="left">
+                    <span>104</span>
+                </div>
+                <div class="middle">
+                    <span>HIGHEST CHECKOUT</span>
+                </div>
+                <div class="right">
+                    <span>116</span>
+                </div>
             </div>
         </div>
     </div>
@@ -91,11 +93,12 @@
     .overlay-text {
         position: absolute;
         bottom: 0;
+        height: 100%;
         width: 100%;
+        place-content: flex-end;
         background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 60%);
         color: white;
         font-family: 'Arial Black', sans-serif;
-        padding: 20px 0;
         box-sizing: border-box;
         text-align: center;
     }
@@ -106,16 +109,14 @@
     .overlay-text .row4,
     .overlay-text .row5 {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        padding: 4px 40px;
-        max-width: 800px;
-        margin: 0 auto;
         text-transform: uppercase;
         font-weight: bold;
     }
 
     .row1 {
+        background: rgba(128, 0, 128, 0.5);
+        height: 9.85%;
         font-size: 1.8em;
     }
 
@@ -124,6 +125,11 @@
         display: flex;
         align-items: center;
         gap: 10px; /* distanza tra bandiera, nome e score */
+        width: 45%;
+    }
+
+    .row1 .right{
+        place-content: flex-end;
     }
 
     .row1 .name h2 {
@@ -138,14 +144,13 @@
 
     .row1 .flag img {
         height: 30px;
+        padding: 0
     }
 
     .row1 .middle {
-        width: 40px;
-        height: 40px;
+        width: 10%;
         background: white;
         border-radius: 50%;
-        background-image: url('assets/flags/denmark.svg'); /* metti qui la bandiera centrale */
         background-size: cover;
         background-position: center;
     }
@@ -155,6 +160,10 @@
     .row4,
     .row5 {
         font-size: 1em;
+        height: 25%;
+    }
+
+    .row5 {
     }
 
     .row2 span,
@@ -164,11 +173,56 @@
         flex: 1;
     }
 
+    .row2 .left,
+    .row3 .left,
+    .row4 .left,
+    .row5 .left {
+        width: 33.33%;
+        height: 51.7%;
+        background: rgba(0, 0, 128, 0.5);
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+
     .row2 .middle,
     .row3 .middle,
     .row4 .middle,
     .row5 .middle {
         font-weight: bold;
         letter-spacing: 1px;
+
+        width: 33.34%;
+        height: 51.7%;
+        text-align: center;
+        background: rgba(255, 0, 0, 0.5);
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+    .row2 .right,
+    .row3 .right,
+    .row4 .right,
+    .row5 .right {
+        width: 33.33%;
+        height: 51.7%;
+        text-align: center;
+        background: rgba(0, 0, 255, 0.5);
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+
+    .values {
+        position: relative;
+        width: 100%;
+        height: 27.28%;
+        margin-bottom: 2.8%;
+    }
+
+    #canvas {
+        width: 100%;
+        height: 100%;
+        position: relative;
     }
 </style>
