@@ -1,75 +1,40 @@
 <div class="image-template">
-    <img src="assets/placeholder.png" data-editable alt="ciaooo">
+    <img src="assets/placeholder.png" alt="background">
     <div class="overlay-text">
         <div class="row1">
             <div class="left">
-                <div class="flag">
-                    <img src="assets/flags/england.svg" alt="ciaooo">
-                </div>
-                <div class="name">
-                    <h2>BUNTING</h2>
-                </div>
-                <div class="result">
-                    <h1>8</h1>
-                </div>
+                <div class="flag"><img id="flag-left" src="assets/flags/england.svg" alt="flag-left" /></div>
+                <div class="name"><h2 id="name-left"></h2></div>
+                <div class="result"><h1 id="score-left"></h1></div>
             </div>
-            <img src="assets/flags/denmark.svg" class="middle" alt="ciaooo">
+            <div class="middle" style="background-image: url('assets/logo.png')"></div>
             <div class="right">
-                <div class="result">
-                    <h1>4</h1>
-                </div>
-                <div class="name">
-                    <h2>CROSS</h2>
-                </div>
-                <div class="flag">
-                    <img src="assets/flags/england.svg" alt="ciaooo">
-                </div>
+                <div class="result"><h1 id="score-right"></h1></div>
+                <div class="name"><h2 id="name-right"></h2></div>
+                <div class="flag"><img id="flag-right" src="assets/flags/england.svg" alt="flag-right" /></div>
             </div>
         </div>
+
         <div class="values">
             <div class="row2">
-                <div class="left">
-                    <span>97.49</span>
-                </div>
-                <div class="middle">
-                    <span>AVERAGE</span>
-                </div>
-                <div class="right">
-                    <span>98.04</span>
-                </div>
+                <div class="left"><span id="avg-left"></span></div>
+                <div class="middle"><span>AVERAGE</span></div>
+                <div class="right"><span id="avg-right"></span></div>
             </div>
             <div class="row3">
-                <div class="left">
-                    <span>42.11%</span>
-                </div>
-                <div class="middle">
-                    <span>CHECKOUT %</span>
-                </div>
-                <div class="right">
-                    <span>44.44%</span>
-                </div>
+                <div class="left"><span id="checkout-left"></span></div>
+                <div class="middle"><span>CHECKOUT %</span></div>
+                <div class="right"><span id="checkout-right"></span></div>
             </div>
             <div class="row4">
-                <div class="left">
-                    <span>4</span>
-                </div>
-                <div class="middle">
-                    <span>180S</span>
-                </div>
-                <div class="right">
-                    <span>2</span>
-                </div>
+                <div class="left"><span id="s180-left"></span></div>
+                <div class="middle"><span>180S</span></div>
+                <div class="right"><span id="s180-right"></span></div>
             </div>
             <div class="row5">
-                <div class="left">
-                    <span>104</span>
-                </div>
-                <div class="middle">
-                    <span>HIGHEST CHECKOUT</span>
-                </div>
-                <div class="right">
-                    <span>116</span>
-                </div>
+                <div class="left"><span id="hc-left"></span></div>
+                <div class="middle"><span>HIGHEST CHECKOUT</span></div>
+                <div class="right"><span id="hc-right"></span></div>
             </div>
         </div>
     </div>

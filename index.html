@@ -21,14 +21,8 @@
     <div id="workspace-container">
         <!-- Controlli resize -->
         <div class="resize-controls">
-            <label>
-                Larghezza
-                <input type="number" id="widthInput" value="1440" />
-            </label>
-            <label>
-                Altezza
-                <input type="number" id="heightInput" value="1800" />
-            </label>
+            <label>Larghezza <input type="number" id="widthInput" value="1440" /></label>
+            <label>Altezza <input type="number" id="heightInput" value="1800" /></label>
             <button id="resizeCanvas">Ridimensiona</button>
         </div>
 
@@ -43,7 +37,7 @@
             <div id="infoForm">
                 <label>
                     Competizione:
-                    <select id="competizioneSelect">
+                    <select id="competizioneSelect" onchange="aggiornaOverlay()">
                         <option value="">-- Seleziona --</option>
                         <option value="Premier League Darts">Premier League Darts</option>
                         <option value="World Championship">World Championship</option>
@@ -57,9 +51,9 @@
                     <!-- Giocatore 1 -->
                     <div class="giocatore">
                         <h4>Giocatore 1</h4>
-                        <label>Nome: <input type="text" id="nome1" /></label>
+                        <label>Nome: <input type="text" id="nome1" onchange="aggiornaOverlay()" /></label>
                         <label>Nazionalità:
-                            <select id="nazionalita1">
+                            <select id="nazionalita1" onchange="aggiornaOverlay()">
                                 <option value="">--</option>
                                 <option value="ITA">🇮🇹 ITA</option>
                                 <option value="ENG">🏴 ENG</option>
@@ -67,19 +61,19 @@
                                 <option value="GER">🇩🇪 GER</option>
                             </select>
                         </label>
-                        <label>Punteggio: <input type="text" id="punteggio1" /></label>
-                        <label>Media: <input type="text" id="media1" /></label>
-                        <label>Checkout: <input type="text" id="checkout1" /></label>
-                        <label>180: <input type="text" id="centottanta1" /></label>
-                        <label>Checkout più alto: <input type="text" id="checkoutMax1" /></label>
+                        <label>Punteggio: <input type="text" id="punteggio1" onchange="aggiornaOverlay()" /></label>
+                        <label>Media: <input type="text" id="media1" onchange="aggiornaOverlay()" /></label>
+                        <label>Checkout: <input type="text" id="checkout1" onchange="aggiornaOverlay()" /></label>
+                        <label>180: <input type="text" id="centottanta1" onchange="aggiornaOverlay()" /></label>
+                        <label>Checkout più alto: <input type="text" id="checkoutMax1" onchange="aggiornaOverlay()" /></label>
                     </div>
 
                     <!-- Giocatore 2 -->
                     <div class="giocatore">
                         <h4>Giocatore 2</h4>
-                        <label>Nome: <input type="text" id="nome2" /></label>
+                        <label>Nome: <input type="text" id="nome2" onchange="aggiornaOverlay()" /></label>
                         <label>Nazionalità:
-                            <select id="nazionalita2">
+                            <select id="nazionalita2" onchange="aggiornaOverlay()">
                                 <option value="">--</option>
                                 <option value="ITA">🇮🇹 ITA</option>
                                 <option value="ENG">🏴 ENG</option>
@@ -87,11 +81,11 @@
                                 <option value="GER">🇩🇪 GER</option>
                             </select>
                         </label>
-                        <label>Punteggio: <input type="text" id="punteggio2" /></label>
-                        <label>Media: <input type="text" id="media2" /></label>
-                        <label>Checkout: <input type="text" id="checkout2" /></label>
-                        <label>180: <input type="text" id="centottanta2" /></label>
-                        <label>Checkout più alto: <input type="text" id="checkoutMax2" /></label>
+                        <label>Punteggio: <input type="text" id="punteggio2" onchange="aggiornaOverlay()" /></label>
+                        <label>Media: <input type="text" id="media2" onchange="aggiornaOverlay()" /></label>
+                        <label>Checkout: <input type="text" id="checkout2" onchange="aggiornaOverlay()" /></label>
+                        <label>180: <input type="text" id="centottanta2" onchange="aggiornaOverlay()" /></label>
+                        <label>Checkout più alto: <input type="text" id="checkoutMax2" onchange="aggiornaOverlay()" /></label>
                     </div>
                 </div>
             </div>
@@ -101,6 +95,54 @@
         <button id="captureBtn">📸 Cattura immagine</button>
     </div>
 </div>
+
+<script>
+    function aggiornaOverlay() {
+        const getVal = id => document.getElementById(id)?.value || '';
+
+        document.getElementById('name-left')?.innerText = getVal('nome1');
+        document.getElementById('score-left')?.innerText = getVal('punteggio1');
+        document.getElementById('avg-left')?.innerText = getVal('media1');
+        document.getElementById('checkout-left')?.innerText = getVal('checkout1');
+        document.getElementById('s180-left')?.innerText = getVal('centottanta1');
+        document.getElementById('hc-left')?.innerText = getVal('checkoutMax1');
+
+        document.getElementById('name-right')?.innerText = getVal('nome2');
+        document.getElementById('score-right')?.innerText = getVal('punteggio2');
+        document.getElementById('avg-right')?.innerText = getVal('media2');
+        document.getElementById('checkout-right')?.innerText = getVal('checkout2');
+        document.getElementById('s180-right')?.innerText = getVal('centottanta2');
+        document.getElementById('hc-right')?.innerText = getVal('checkoutMax2');
+
+        const bandiere = {
+            'ITA': 'italy.svg',
+            'ENG': 'england.svg',
+            'NED': 'netherlands.svg',
+            'GER': 'germany.svg'
+        };
+
+        const naz1 = getVal('nazionalita1');
+        const naz2 = getVal('nazionalita2');
+
+        if (bandiere[naz1]) {
+            document.getElementById('flag-left')?.setAttribute('src', 'assets/flags/' + bandiere[naz1]);
+        }
+
+        if (bandiere[naz2]) {
+            document.getElementById('flag-right')?.setAttribute('src', 'assets/flags/' + bandiere[naz2]);
+        }
+    }
+
+    document.querySelectorAll('.template-item').forEach(item => {
+        item.addEventListener('click', async () => {
+            const file = item.dataset.template;
+            const res = await fetch(file);
+            const html = await res.text();
+            document.getElementById('canvas').innerHTML = html;
+            aggiornaOverlay();
+        });
+    });
+</script>
 
 <script src="renderer.js"></script>
 </body>
