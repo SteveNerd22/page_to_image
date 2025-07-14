@@ -100,19 +100,24 @@
     function aggiornaOverlay() {
         const getVal = id => document.getElementById(id)?.value || '';
 
-        document.getElementById('name-left')?.innerText = getVal('nome1');
-        document.getElementById('score-left')?.innerText = getVal('punteggio1');
-        document.getElementById('avg-left')?.innerText = getVal('media1');
-        document.getElementById('checkout-left')?.innerText = getVal('checkout1');
-        document.getElementById('s180-left')?.innerText = getVal('centottanta1');
-        document.getElementById('hc-left')?.innerText = getVal('checkoutMax1');
+        const el = (id, val) => {
+            const node = document.getElementById(id);
+            if (node) node.innerText = val;
+        };
 
-        document.getElementById('name-right')?.innerText = getVal('nome2');
-        document.getElementById('score-right')?.innerText = getVal('punteggio2');
-        document.getElementById('avg-right')?.innerText = getVal('media2');
-        document.getElementById('checkout-right')?.innerText = getVal('checkout2');
-        document.getElementById('s180-right')?.innerText = getVal('centottanta2');
-        document.getElementById('hc-right')?.innerText = getVal('checkoutMax2');
+        el('name-left', getVal('nome1'));
+        el('score-left', getVal('punteggio1'));
+        el('avg-left', getVal('media1'));
+        el('checkout-left', getVal('checkout1'));
+        el('s180-left', getVal('centottanta1'));
+        el('hc-left', getVal('checkoutMax1'));
+
+        el('name-right', getVal('nome2'));
+        el('score-right', getVal('punteggio2'));
+        el('avg-right', getVal('media2'));
+        el('checkout-right', getVal('checkout2'));
+        el('s180-right', getVal('centottanta2'));
+        el('hc-right', getVal('checkoutMax2'));
 
         const bandiere = {
             'ITA': 'italy.svg',
@@ -124,22 +129,51 @@
         const naz1 = getVal('nazionalita1');
         const naz2 = getVal('nazionalita2');
 
-        if (bandiere[naz1]) {
-            document.getElementById('flag-left')?.setAttribute('src', 'assets/flags/' + bandiere[naz1]);
+        const flag1 = document.getElementById('flag-left');
+        const flag2 = document.getElementById('flag-right');
+
+        if (flag1 && bandiere[naz1]) {
+            flag1.setAttribute('src', 'assets/flags/' + bandiere[naz1]);
         }
 
-        if (bandiere[naz2]) {
-            document.getElementById('flag-right')?.setAttribute('src', 'assets/flags/' + bandiere[naz2]);
+        if (flag2 && bandiere[naz2]) {
+            flag2.setAttribute('src', 'assets/flags/' + bandiere[naz2]);
         }
     }
 
+    async function loadTemplate(templatePath) {
+        const res = await fetch(templatePath);
+        const text = await res.text();
+
+        // Separiamo <style> dal contenuto
+        const temp = document.createElement('div');
+        temp.innerHTML = text;
+
+        const styleTags = temp.querySelectorAll('style');
+        const styles = Array.from(styleTags).map(tag => tag.innerHTML).join('\n');
+
+        // Rimuoviamo tutti gli <style> dal template HTML
+        styleTags.forEach(tag => tag.remove());
+
+        // Inseriamo lo stile nel <head>
+        if (styles) {
+            const styleEl = document.createElement('style');
+            styleEl.textContent = styles;
+            document.head.appendChild(styleEl);
+        }
+
+        // Carichiamo il contenuto HTML senza <style>
+        document.getElementById('canvas').innerHTML = temp.innerHTML;
+
+        // Dopo un tick del rendering, aggiorna i dati
+        setTimeout(aggiornaOverlay, 50);
+    }
+
+    // Eventi sui template
     document.querySelectorAll('.template-item').forEach(item => {
-        item.addEventListener('click', async () => {
+        item.addEventListener('click', () => {
             const file = item.dataset.template;
-            const res = await fetch(file);
-            const html = await res.text();
-            document.getElementById('canvas').innerHTML = html;
-            aggiornaOverlay();
+            loadTemplate(file);
         });
     });
 </script>
