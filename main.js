@@ -53,16 +53,37 @@ ipcMain.handle('capture-canvas', async (event, htmlContent, width, height) => {
 
 async function inlineLocalImages(html, baseDir) {
     return html.replace(/<img[^>]+src="([^"]+)"[^>]*>/g, (match, src) => {
-        if (/^(https?:|data:)/.test(src)) return match; // ignora se è già online o data url
+        if (/^(https?:|data:)/.test(src)) return match; // già online o data url
 
         const imgPath = path.join(baseDir, src);
         if (!fs.existsSync(imgPath)) return match;
 
-        const ext = path.extname(imgPath).slice(1); // jpg, png, etc.
-        const mime = ext === 'jpg' ? 'jpeg' : ext;
-        const data = fs.readFileSync(imgPath).toString('base64');
+        const ext = path.extname(imgPath).slice(1).toLowerCase();
 
-        return match.replace(src, `data:image/${mime};base64,${data}`);
+        if (ext === 'svg') {
+            try {
+                let svgContent = fs.readFileSync(imgPath, 'utf8');
+                // Rimuovi eventuali BOM e minimi spazi
+                svgContent = svgContent.trim();
+                // Encode come URI component (solo alcuni caratteri)
+                const encoded = encodeURIComponent(svgContent)
+                    .replace(/'/g, '%27')
+                    .replace(/"/g, '%22');
+                return match.replace(src, `data:image/svg+xml,${encoded}`);
+            } catch (err) {
+                console.error(`Errore nella lettura SVG: ${imgPath}`, err);
+                return match;
+            }
+        } else {
+            try {
+                const data = fs.readFileSync(imgPath).toString('base64');
+                const mime = ext === 'jpg' ? 'jpeg' : ext;
+                return match.replace(src, `data:image/${mime};base64,${data}`);
+            } catch (err) {
+                console.error(`Errore nella lettura immagine: ${imgPath}`, err);
+                return match;
+            }
+        }
     });
 }
 
