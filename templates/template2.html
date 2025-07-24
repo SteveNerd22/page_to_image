@@ -1,5 +1,5 @@
 <div class="image-template">
-    <img src="assets/placeholder.png" alt="background">
+    <img src="assets/placeholder.png" data-editable alt="background">
     <div class="overlay-text">
         <div class="row1">
             <div class="left">
@@ -98,9 +98,32 @@
         place-content: flex-end;
     }
 
+    .row1 .right .name {
+        margin-right: 100px;
+    }
+
+    .row1 .left .name {
+        margin-left: 100px;
+    }
+
+
+    .row1 .name {
+        width: 75%;
+    }
+
     .row1 .name h2 {
         margin: 0;
         font-size: 1em;
+    }
+
+    .row1 .result {
+        width: 25%;
+        transform: scaleY(1.2) translateY(-10px)
+    }
+
+    .flag {
+        position: absolute;
+        /*transform: translateY(-10px);*/
     }
 
     .row1 .result h1 {
@@ -110,8 +133,43 @@
     }
 
     .row1 .flag img {
-        height: 30px;
+        height: 4.6em;
+        transform: translateY(-1px);
         padding: 0
+    }
+
+    .row1 .left .flag img {
+        mask-image: linear-gradient(
+                to right,
+                rgba(0, 0, 0, 0.9) 0%,
+                rgba(0, 0, 0, 0.75) 10%,
+                rgba(0, 0, 0, 0.33) 40%,
+                rgba(0, 0, 0, 0) 80%
+        );
+        -webkit-mask-image: linear-gradient(
+                to right,
+                rgba(0, 0, 0, 0.9) 0%,
+                rgba(0, 0, 0, 0.75) 10%,
+                rgba(0, 0, 0, 0.33) 40%,
+                rgba(0, 0, 0, 0) 80%
+        );
+    }
+
+    .row1 .right .flag img {
+        mask-image: linear-gradient(
+                to left,
+                rgba(0, 0, 0, 0.9) 0%,
+                rgba(0, 0, 0, 0.75) 10%,
+                rgba(0, 0, 0, 0.33) 40%,
+                rgba(0, 0, 0, 0) 80%
+        );
+        -webkit-mask-image: linear-gradient(
+                to left,
+                rgba(0, 0, 0, 0.9) 0%,
+                rgba(0, 0, 0, 0.75) 10%,
+                rgba(0, 0, 0, 0.33) 40%,
+                rgba(0, 0, 0, 0) 80%
+        );
     }
 
     .row1 .middle {
