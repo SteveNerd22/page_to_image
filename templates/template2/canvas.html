@@ -1,5 +1,5 @@
 <div class="image-template">
-    <img src="assets/placeholder.png" data-editable alt="background">
+    <img id="background-image" src="assets/placeholder.png" data-editable alt="background">
     <div class="overlay-text">
         <div class="row1">
             <div class="left">
@@ -134,7 +134,7 @@
 
     .row1 .flag img {
         height: 4.6em;
-        transform: translateY(-1px);
+        transform: translate(-1px);
         padding: 0
     }
 
@@ -146,6 +146,7 @@
                 rgba(0, 0, 0, 0.33) 40%,
                 rgba(0, 0, 0, 0) 80%
         );
+        transform: translateX(-20px);
         -webkit-mask-image: linear-gradient(
                 to right,
                 rgba(0, 0, 0, 0.9) 0%,
@@ -163,6 +164,7 @@
                 rgba(0, 0, 0, 0.33) 40%,
                 rgba(0, 0, 0, 0) 80%
         );
+        transform: translateX(20px);
         -webkit-mask-image: linear-gradient(
                 to left,
                 rgba(0, 0, 0, 0.9) 0%,
@@ -174,7 +176,6 @@
 
     .row1 .middle {
         width: 10%;
-        background: white;
         border-radius: 50%;
         background-size: cover;
         background-position: center;

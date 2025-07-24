@@ -13,8 +13,8 @@
     <div id="sidebar">
         <button id="toggleSidebar">☰</button>
         <div id="templateList">
-            <div class="template-item" data-template="template1.html">🖼️ Template 1</div>
-            <div class="template-item" data-template="template2.html">📝 Template 2</div>
+            <div class="template-item" data-template="template1">🖼️ Template 1</div>
+            <div class="template-item" data-template="template2">📝 Template 2</div>
             <a href="https://officialpdc.photoshelter.com/archive">pippo</a>
         </div>
     </div>
@@ -34,63 +34,8 @@
             <div id="workspace" contenteditable="false">
                 <div id="canvas"></div>
             </div>
-
             <!-- Form info -->
-            <div id="infoForm">
-                <label>
-                    Competizione:
-                    <select id="competizioneSelect" onchange="aggiornaOverlay()">
-                        <option value="">-- Seleziona --</option>
-                        <option value="Premier League Darts">Premier League Darts</option>
-                        <option value="World Championship">World Championship</option>
-                        <option value="Grand Slam">Grand Slam</option>
-                    </select>
-                </label>
-
-                <hr />
-
-                <div class="giocatori">
-                    <!-- Giocatore 1 -->
-                    <div class="giocatore">
-                        <h4>Giocatore 1</h4>
-                        <label>Nome: <input type="text" id="nome1" onchange="aggiornaOverlay()" /></label>
-                        <label>Nazionalità:
-                            <select id="nazionalita1" onchange="aggiornaOverlay()">
-                                <option value="">--</option>
-                                <option value="ITA">🇮🇹 ITA</option>
-                                <option value="ENG">🏴 ENG</option>
-                                <option value="NED">🇳🇱 NED</option>
-                                <option value="GER">🇩🇪 GER</option>
-                            </select>
-                        </label>
-                        <label>Punteggio: <input type="text" id="punteggio1" onchange="aggiornaOverlay()" /></label>
-                        <label>Media: <input type="text" id="media1" onchange="aggiornaOverlay()" /></label>
-                        <label>Checkout: <input type="text" id="checkout1" onchange="aggiornaOverlay()" /></label>
-                        <label>180: <input type="text" id="centottanta1" onchange="aggiornaOverlay()" /></label>
-                        <label>Checkout più alto: <input type="text" id="checkoutMax1" onchange="aggiornaOverlay()" /></label>
-                    </div>
-
-                    <!-- Giocatore 2 -->
-                    <div class="giocatore">
-                        <h4>Giocatore 2</h4>
-                        <label>Nome: <input type="text" id="nome2" onchange="aggiornaOverlay()" /></label>
-                        <label>Nazionalità:
-                            <select id="nazionalita2" onchange="aggiornaOverlay()">
-                                <option value="">--</option>
-                                <option value="ITA">🇮🇹 ITA</option>
-                                <option value="ENG">🏴 ENG</option>
-                                <option value="NED">🇳🇱 NED</option>
-                                <option value="GER">🇩🇪 GER</option>
-                            </select>
-                        </label>
-                        <label>Punteggio: <input type="text" id="punteggio2" onchange="aggiornaOverlay()" /></label>
-                        <label>Media: <input type="text" id="media2" onchange="aggiornaOverlay()" /></label>
-                        <label>Checkout: <input type="text" id="checkout2" onchange="aggiornaOverlay()" /></label>
-                        <label>180: <input type="text" id="centottanta2" onchange="aggiornaOverlay()" /></label>
-                        <label>Checkout più alto: <input type="text" id="checkoutMax2" onchange="aggiornaOverlay()" /></label>
-                    </div>
-                </div>
-            </div>
+            <div id="infoForm"></div>
         </div>
 
         <!-- Cattura -->
@@ -99,50 +44,6 @@
 </div>
 
 <script>
-    function aggiornaOverlay() {
-        const getVal = id => document.getElementById(id)?.value || '';
-
-        const el = (id, val) => {
-            const node = document.getElementById(id);
-            if (node) node.innerText = val;
-        };
-
-        el('name-left', getVal('nome1'));
-        el('score-left', getVal('punteggio1'));
-        el('avg-left', getVal('media1'));
-        el('checkout-left', getVal('checkout1'));
-        el('s180-left', getVal('centottanta1'));
-        el('hc-left', getVal('checkoutMax1'));
-
-        el('name-right', getVal('nome2'));
-        el('score-right', getVal('punteggio2'));
-        el('avg-right', getVal('media2'));
-        el('checkout-right', getVal('checkout2'));
-        el('s180-right', getVal('centottanta2'));
-        el('hc-right', getVal('checkoutMax2'));
-
-        const bandiere = {
-            'ITA': 'italy.svg',
-            'ENG': 'england.svg',
-            'NED': 'netherlands.svg',
-            'GER': 'germany.svg'
-        };
-
-        const naz1 = getVal('nazionalita1');
-        const naz2 = getVal('nazionalita2');
-
-        const flag1 = document.getElementById('flag-left');
-        const flag2 = document.getElementById('flag-right');
-
-        if (flag1 && bandiere[naz1]) {
-            flag1.setAttribute('src', 'assets/flags/' + bandiere[naz1]);
-        }
-
-        if (flag2 && bandiere[naz2]) {
-            flag2.setAttribute('src', 'assets/flags/' + bandiere[naz2]);
-        }
-    }
-
     async function loadTemplate(templatePath) {
         const res = await fetch(templatePath);
         const text = await res.text();

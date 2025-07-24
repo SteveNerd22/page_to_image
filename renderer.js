@@ -1,4 +1,5 @@
 const canvas = document.getElementById('canvas');
+const info = document.getElementById('infoForm')
 const captureBtn = document.getElementById('captureBtn');
 const toggleSidebarBtn = document.getElementById('toggleSidebar');
 const sidebar = document.getElementById('sidebar');
@@ -11,10 +12,29 @@ toggleSidebarBtn.addEventListener('click', () => {
 // Load template on click
 document.querySelectorAll('.template-item').forEach(item => {
     item.addEventListener('click', async () => {
-        const templateFile = item.getAttribute('data-template');
-        const res = await fetch(`templates/${templateFile}`);
-        const html = await res.text();
-        canvas.innerHTML = html;
+        const templateFolder = item.getAttribute('data-template'); // ora è la cartella
+
+        // Carico info.html
+        const resInfo = await fetch(`templates/${templateFolder}/info.html`);
+        info.innerHTML = await resInfo.text();
+
+        info.querySelectorAll('script').forEach(oldScript => {
+            const newScript = document.createElement('script');
+            if (oldScript.src) {
+                newScript.src = oldScript.src;
+            } else {
+                newScript.textContent = oldScript.textContent;
+            }
+            document.body.appendChild(newScript);  // li aggiungo al body (si eseguono e sono globali)
+            oldScript.remove();
+        });
+
+
+        // Carico canvas.html
+        const resCanvas = await fetch(`templates/${templateFolder}/canvas.html`);
+        canvas.innerHTML = await resCanvas.text();
+
+        // Abilito editing solo sul canvas
         enableEditing(canvas);
     });
 });
