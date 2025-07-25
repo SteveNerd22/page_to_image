@@ -45,12 +45,16 @@ captureBtn.addEventListener('click', async () => {
         const canvas = document.getElementById('canvas');
         // Prendi l'HTML del canvas (puoi anche usare outerHTML se vuoi tutto il nodo)
         const htmlContent = canvas.outerHTML;
+
+        const templateHead = document.body.querySelector('head');
+        const headContent = templateHead ? templateHead.outerHTML : '';
+
         // Prendi dimensioni attuali (o quelle che vuoi)
         const width = canvas.clientWidth;
         const height = canvas.clientHeight;
 
         // Chiedi al main di catturare il nodo
-        const base64Image = await window.api.captureCanvas(htmlContent, width, height);
+        const base64Image = await window.api.captureCanvas(htmlContent, headContent, width, height);
 
         await window.api.saveImage(base64Image);
 

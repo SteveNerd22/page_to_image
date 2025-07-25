@@ -27,8 +27,8 @@ contextBridge.exposeInMainWorld('api', {
             });
         });
     },
-    captureCanvas: (htmlContent, width, height) =>
-        ipcRenderer.invoke('capture-canvas', htmlContent, width, height),
+    captureCanvas: (htmlContent, head, width, height) =>
+        ipcRenderer.invoke('capture-canvas', htmlContent, head, width, height),
     saveImage: (base64Data) =>
         ipcRenderer.invoke('save-image', base64Data),
 });

@@ -1,3 +1,9 @@
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+
 <div class="image-template">
     <img id="background-image" src="assets/placeholder.png" data-editable alt="background">
     <div class="overlay-text">
@@ -68,11 +74,16 @@
         text-align: center;
     }
 
-    .overlay-text .row1,
     .overlay-text .row2,
     .overlay-text .row3,
     .overlay-text .row4,
     .overlay-text .row5 {
+        background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.8) 0%,
+                rgba(0, 0, 0, 0.1) 10%,
+                rgba(0, 0, 0, 0.01) 20%,
+                rgba(0, 0, 0, 0) 30%);
         display: flex;
         align-items: center;
         text-transform: uppercase;
@@ -81,9 +92,28 @@
     }
 
     .row1 {
-        background: rgba(128, 0, 128, 0.5);
+        background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.8) 0%,
+                rgba(0, 0, 0, 0.1) 10%,
+                rgba(0, 0, 0, 0.01) 20%,
+                rgba(0, 0, 0, 0) 30%),
+        linear-gradient(
+                to right,
+                rgba(255, 0, 0, 0.2),
+                rgba(0, 0, 255, 0.2)
+        );
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+        font-family: 'Bebas Neue', sans-serif;
+        font-weight: bold;
         height: 9.85%;
         font-size: 1.8em;
+    }
+
+    .overlay-text .values {
+        background: linear-gradient(to right, rgba(255, 0, 0, 0.1), rgba(0, 0, 255, 0.1));
     }
 
     .row1 .left,
@@ -113,12 +143,21 @@
 
     .row1 .name h2 {
         margin: 0;
-        font-size: 1em;
+        font-size: 2em;
+        transform: scaleY(1.55);
+        white-space: nowrap;
+    }
+
+    .row1 .left .result {
+        width: 33%;
+    }
+
+    .row1 .right .result {
+        width: 25%;
     }
 
     .row1 .result {
-        width: 25%;
-        transform: scaleY(1.2) translateY(-10px)
+        transform: scaleY(1.85) translateY(-2px)
     }
 
     .flag {
@@ -127,9 +166,10 @@
     }
 
     .row1 .result h1 {
-        font-size: 5em;
+        font-size: 4em;
+        letter-spacing: -0.05em;
         margin: 0 15px;
-        font-family: 'Anton', sans-serif;
+        font-family: "Bebas Neue", sans-serif;
     }
 
     .row1 .flag img {
@@ -185,8 +225,10 @@
     .row3,
     .row4,
     .row5 {
-        font-size: 1em;
+        font-size: 3.75em;
+        transform: translateY(2px);
         height: 25%;
+        white-space: nowrap;
     }
 
     .row5 {
@@ -205,7 +247,6 @@
     .row5 .left {
         width: 33.33%;
         height: 51.7%;
-        background: rgba(0, 0, 128, 0.5);
         align-items: center;
         justify-content: center;
         display: flex;
@@ -221,7 +262,6 @@
         width: 33.34%;
         height: 51.7%;
         text-align: center;
-        background: rgba(255, 0, 0, 0.5);
         align-items: center;
         justify-content: center;
         display: flex;
@@ -233,7 +273,6 @@
         width: 33.33%;
         height: 51.7%;
         text-align: center;
-        background: rgba(0, 0, 255, 0.5);
         align-items: center;
         justify-content: center;
         display: flex;

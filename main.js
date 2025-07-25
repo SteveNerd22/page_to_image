@@ -31,10 +31,10 @@ ipcMain.handle('save-image', async (event, base64Data) => {
     fs.writeFileSync(result.filePath, buffer);
 });
 
-ipcMain.handle('capture-canvas', async (event, htmlContent, width, height) => {
+ipcMain.handle('capture-canvas', async (event, htmlContent, head, width, height) => {
     try {
         const fixedHtml = await inlineLocalImages(htmlContent, path.resolve(__dirname));
-        const imageBuffer = await captureWithPuppeteer(fixedHtml, width -40, height -40);
+        const imageBuffer = await captureWithPuppeteer(fixedHtml, head, width -40, height -40);
 
         // Verifica che sia effettivamente un Buffer
         if (!Buffer.isBuffer(imageBuffer)) {
@@ -88,7 +88,7 @@ async function inlineLocalImages(html, baseDir) {
 }
 
 
-async function captureWithPuppeteer(htmlContent, width, height) {
+async function captureWithPuppeteer(htmlContent, head, width, height) {
     const browser = await puppeteer.launch({
         headless: 'new', // usa 'new' per Chrome recente
         args: [
@@ -107,6 +107,7 @@ async function captureWithPuppeteer(htmlContent, width, height) {
                 <style>
                     html, body { margin: 0; padding: 0; overflow: hidden; }
                 </style>
+                ${head}
             </head>
             <body>${htmlContent}</body>
         </html>
