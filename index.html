@@ -9,37 +9,45 @@
 
 <div id="app">
     <!-- Sidebar -->
-    <div id="sidebar">
-        <button id="toggleSidebar">☰</button>
+    <aside id="sidebar">
+        <button id="toggleSidebar" aria-label="Toggle Sidebar">☰</button>
         <div id="templateList">
+            <h2 class="sidebar-title">📂 Templates</h2>
             <div class="template-item" data-template="template1">🖼️ Template 1</div>
             <div class="template-item" data-template="template2">📝 Template 2</div>
-            <a href="https://officialpdc.photoshelter.com/archive">pippo</a>
+            <a class="external-link" href="https://officialpdc.photoshelter.com/archive" target="_blank">🌐 Pippo Archive</a>
         </div>
-    </div>
+    </aside>
 
     <!-- Workspace -->
-    <div id="workspace-container">
+    <main id="workspace-container">
         <!-- Controlli resize -->
-        <div class="resize-controls">
-            <label>Larghezza <input type="number" id="widthInput" value="1080" /></label>
-            <label>Altezza <input type="number" id="heightInput" value="1350" /></label>
-            <button id="resizeCanvas">Ridimensiona</button>
-        </div>
+        <section class="resize-controls">
+            <label>Larghezza
+                <input type="number" id="widthInput" value="1080" />
+            </label>
+            <label>Altezza
+                <input type="number" id="heightInput" value="1350" />
+            </label>
+            <button id="resizeCanvas" class="btn-primary">↔️ Ridimensiona</button>
+        </section>
 
         <!-- Area canvas + form affiancati -->
-        <div id="editorArea">
+        <section id="editorArea">
             <!-- Canvas -->
             <div id="workspace" contenteditable="false">
                 <div id="canvas"></div>
             </div>
             <!-- Form info -->
-            <div id="infoForm"></div>
-        </div>
+            <div id="infoForm">
+                <h3>📋 Info Giocatori</h3>
+                <!-- Placeholder dinamico -->
+            </div>
+        </section>
 
         <!-- Cattura -->
-        <button id="captureBtn">📸 Cattura immagine</button>
-    </div>
+        <button id="captureBtn" class="btn-capture">📸 Cattura immagine</button>
+    </main>
 </div>
 
 <script>
@@ -47,31 +55,23 @@
         const res = await fetch(templatePath);
         const text = await res.text();
 
-        // Separiamo <style> dal contenuto
         const temp = document.createElement('div');
         temp.innerHTML = text;
 
         const styleTags = temp.querySelectorAll('style');
         const styles = Array.from(styleTags).map(tag => tag.innerHTML).join('\n');
-
-        // Rimuoviamo tutti gli <style> dal template HTML
         styleTags.forEach(tag => tag.remove());
 
-        // Inseriamo lo stile nel <head>
         if (styles) {
             const styleEl = document.createElement('style');
             styleEl.textContent = styles;
             document.head.appendChild(styleEl);
         }
 
-        // Carichiamo il contenuto HTML senza <style>
         document.getElementById('canvas').innerHTML = temp.innerHTML;
-
-        // Dopo un tick del rendering, aggiorna i dati
         setTimeout(aggiornaOverlay, 50);
     }
 
-    // Eventi sui template
     document.querySelectorAll('.template-item').forEach(item => {
         item.addEventListener('click', () => {
             const file = item.dataset.template;
